@@ -5,7 +5,8 @@ import re
 # Create your views here.
 def clientes(request):
   if request.method == "GET":
-    return render(request, 'clientes.html')
+    clientes_list = Cliente.objects.all()
+    return render(request, 'clientes.html', {'clientes': clientes_list})
   elif request.method == "POST":
     nome = request.POST.get('nome')
     sobrenome = request.POST.get('sobrenome')
@@ -14,7 +15,7 @@ def clientes(request):
     carros = request.POST.getlist('carro')
     placas = request.POST.getlist('placa')
     anos = request.POST.getlist('ano')
-
+    
     cliente = Cliente.objects.filter(cpf=cpf)
     if cliente.exists():
       return render(request, 'clientes.html', {'nome': nome, 'sobrenome': sobrenome, 'email': email, 'carros': zip(carros, placas, anos)})
