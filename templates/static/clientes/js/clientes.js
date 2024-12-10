@@ -77,6 +77,10 @@ function dados_cliente(){
           <div class='col-md'>\
             <input class='btn btn-success' type='submit' value='Salvar'>\
           </div>\
+          </form>\
+          <div class='col-md'>\
+            <a class='btn btn-danger' href='/clientes/excluir_carro/" + data['carros'][i]['id']+ "'>EXCLUIR</a>\
+          </div>\
         </div><br>"
 
     }

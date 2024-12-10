@@ -5,6 +5,8 @@ import re
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
+from django.shortcuts import redirect
 # Create your views here.
 def clientes(request):
   if request.method == "GET":
@@ -66,6 +68,13 @@ def update_carro(request, id):
   carro.save()
   return HttpResponse("dados alterados")
 
+def excluir_carro(request, id):
+  try:
+    carro = Carro.objects.get(id=id)
+    carro.delete()
+    return redirect(reverse('clientes')+f'?aba=att_cliente&id_cliente={id}')
+  except:
+    return redirect(reverse('clientes')+f'?aba=att_cliente&id_cliente={id}')
 
 
 
