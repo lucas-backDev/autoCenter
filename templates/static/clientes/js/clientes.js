@@ -41,6 +41,18 @@ function dados_cliente(){
   }).then(function(result){
     return result.json()
   }).then(function(data){
-    console.log(data)
+    document.getElementById('form-att-cliente').style.display = 'block'
+
+    nome = document.getElementById('nome')
+    nome.value = data['cliente']['nome']
+
+    sobrenome = document.getElementById('sobrenome')
+    sobrenome.value = data['cliente']['sobrenome']
+
+    email = document.getElementById('email')
+    email.value = data['cliente']['email']
+
+    cpf = document.getElementById('cpf')
+    cpf.value = data['cliente']['cpf']
   })
 }
