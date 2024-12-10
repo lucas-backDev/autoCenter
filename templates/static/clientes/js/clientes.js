@@ -23,3 +23,24 @@ function exibir_form(tipo){
     }
 
 }
+
+function dados_cliente(){
+  cliente = document.getElementById('cliente-select')
+  csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+  id_cliente = cliente.value
+  data = new FormData()
+  data.append('id_cliente', id_cliente)
+
+  fetch("/clientes/atualiza_cliente/",{
+    method: "POST",
+    headers: {
+      'X-CSRFToken': csrf_token,
+    },
+    body: data
+
+  }).then(function(result){
+    return result.json()
+  }).then(function(data){
+    console.log(data)
+  })
+}
